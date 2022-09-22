@@ -1,4 +1,4 @@
-/**
+/** 合并区间
  * @param {number[][]} intervals
  * @return {number[][]}
  */
