@@ -1,4 +1,4 @@
-/** 二叉树的前序遍历 给你二叉树的根节点 root ，返回它节点值的 前序 遍历从前面开始排序
+/**
  * Definition for a binary tree node.
  * class TreeNode {
  *     val: number
@@ -18,20 +18,23 @@ interface TreeNode{
   left: TreeNode | null
   right: TreeNode | null
 }
-function preOrder(root: TreeNode | null, res: Array<number>) {
-  if(root === null){
-    return
-  }
-  res.push(root.val)
-  preOrder(root.left!, res)
-  preOrder(root.right!, res)
-}
-function preorderTraversal(root: TreeNode | null): number[] {
-  const res:Array<number> = []
-  preOrder(root!, res)
-  return res
-};
 
-export {
-  preorderTraversal
+export function inorderTraversal(root: TreeNode | null) : Array<number> {
+  const res: Array<number> = []
+  const stack: Array<TreeNode> = []
+  if(root === null){
+    return []
+  }
+  while(root !== null || stack.length !== 0) {
+    while(root !== null) {
+      stack.push(root)
+      root = root.left
+    }
+    if( stack.length !== 0){
+      const pop = stack.pop()
+      res.push(pop!.val)
+      root = pop!.right
+    }
+  }
+  return res
 }
