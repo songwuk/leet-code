@@ -25,16 +25,14 @@ export function inorderTraversal(root: TreeNode | null) : Array<number> {
   if(root === null){
     return []
   }
-  while(root !== null || stack.length !== 0) {
+  while(root !== null || stack.length) {
     while(root !== null) {
       stack.push(root)
       root = root.left
     }
-    if( stack.length !== 0){
-      const pop = stack.pop()
-      res.push(pop!.val)
-      root = pop!.right
-    }
+    const pop = stack.pop()
+    res.push(pop!.val)
+    root = pop!.right
   }
   return res
 }
